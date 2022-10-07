@@ -1,9 +1,21 @@
 package Local;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import Animais.Cachorro;
+import Animais.Gato;
 
 public class Canil {
     Scanner leia = new Scanner(System.in);
+    private ArrayList<Gato> gatos = new ArrayList<>();
+    private ArrayList<Cachorro> cachorros = new ArrayList<>();
+
+    public void Iniciarlizar(ArrayList<Gato> gatos, ArrayList<Cachorro> cachorros) {
+        this.gatos = gatos;
+        this.cachorros = cachorros;
+        atendimento();
+    }
 
     public void atendimento() {
 
@@ -43,13 +55,26 @@ public class Canil {
         System.out.println("|3| Adicionar um novo gato ao Canil OO");
         switch (escolha) {
             case 1:
+                System.out.println("Gatos disponiveis: \n");
 
+                for (int i = 0; i < gatos.size(); i++) {
+                    // fazer condição para filtrar gatos disponiveis ou separar em duas listas
+                    System.out.println("[" + i + 1 + "] " + "Nome do gato");
+
+                }
                 break;
             case 2:
+                System.out.println("Gatos disponiveis: \n");
+
+                for (int i = 0; i < gatos.size(); i++) {
+                    // fazer condição para filtrar gatos adotados ou separar em duas listas
+                    System.out.println("[" + i + 1 + "] " + "Nome do gato");
+
+                }
 
                 break;
             case 3:
-
+                // adicioanr novo metodo para adotar um gato
                 break;
 
         }
