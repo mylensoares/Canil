@@ -1,18 +1,26 @@
 package Animais;
 
-    public class Gato extends Animal{
-        // private String cor_do_pelo;
-        public Gato(String raca, int idade, String porte) {
-            super(raca, idade, porte);
-        }
+import java.time.LocalDate;
 
-        public int cul_idade(int data){
-              int ano_at = 2022;
-              return ano_at - (data*2);
-        }
+public class Gato extends Animal {
+    private String cor_do_pelo;
+
+    public Gato(String raca, int anoNasc, String porte, String cor_do_pelo) {
+        super(raca, anoNasc, porte);
+        this.cor_do_pelo = cor_do_pelo;
+    }
+
+    public String getCorDoPelo() {
+        return cor_do_pelo;
+    }
+
+    public void setCorDoPelo(String cor) {
+        this.cor_do_pelo = cor;
+    }
+
+    @Override
+    public int idade() {
+        int ano_at = LocalDate.now().getYear();
+        return (ano_at - getAnoNasc()) * 2;
+    }
 }
-      
-      
-      
-      
-      
