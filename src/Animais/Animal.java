@@ -1,14 +1,23 @@
 package Animais;
 
 abstract public class Animal {
+    private Boolean adotado;
     private String raca;
     private int anoNasc;
     private String porte;
 
-    public Animal(String raca, int anoNasc, String porte) {
+    public Animal(String raca, int anoNasc, String porte, Boolean adotado) {
         this.raca = raca;
         this.anoNasc = anoNasc;
         this.porte = porte;
+    }
+
+    public Boolean getAdotado() {
+        return adotado;
+    }
+
+    public void setAdotado(Boolean adotado) {
+        this.adotado = adotado;
     }
 
     public String getRaca() {
