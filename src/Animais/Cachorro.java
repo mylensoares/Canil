@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Cachorro extends Animal {
   private String cor_do_pelo;
 
-  public Cachorro(String raca, int anoNasc, String porte, String cor_do_pelo, boolean adotado) {
-    super(raca, anoNasc, porte, adotado);
+  public Cachorro(String raca, int anoNasc, String porte, String cor_do_pelo, boolean adotado, String name) {
+    super(raca, anoNasc, porte, adotado, name);
     this.cor_do_pelo = cor_do_pelo;
   }
 
