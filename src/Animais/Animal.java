@@ -11,6 +11,7 @@ abstract public class Animal {
     public Animal(String raca, int anoNasc, String porte, Boolean adotado, String nome) {
         this.raca = raca;
         this.anoNasc = anoNasc;
+        this.adotado = adotado;
         this.porte = porte;
         this.nome = nome;
     }
