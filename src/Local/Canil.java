@@ -29,11 +29,11 @@ public class Canil {
 
     private void menuBasic() {
 
-        while (escolha != 3) {
+        while (escolha != 9) {
             System.out.println("\nEscolha uma das opções abaixo");
             System.out.println("|1| Sessão de gatos");
             System.out.println("|2| Sessão de cachorros");
-            System.out.println("|3| Fechar programa");
+            System.out.println("|9| Fechar programa");
             escolha = leia.nextInt();
             switch (escolha) {
                 case 1:
@@ -42,7 +42,7 @@ public class Canil {
                 case 2:
                     menuDog();
                     break;
-                case 3:
+                case 9:
                     System.out.println("Até mais");
                     break;
             }
@@ -50,6 +50,7 @@ public class Canil {
 
     }
 
+    // sessão do gato
     private void menuCat() {
         System.out.println("|1| Listar todos os gatos disponiveis para adoção");
         System.out.println("|2| Listar todos os gatos adotados");
@@ -68,7 +69,7 @@ public class Canil {
 
                 break;
             case 3:
-                // adicioanr novo metodo para adotar um gato
+                cadastrarGato();
                 break;
 
         }
@@ -108,6 +109,34 @@ public class Canil {
             System.out.println("Nenhum registro foi encontrado");
         }
     }
+
+    private void cadastrarGato() {
+        String raca, porte, cor_do_pelo, nome;
+        int anoNasc = 0;
+        boolean adotado = false;
+
+        System.out.println("Cadastro: \n ");
+
+        System.out.println("Nome do gat(o)");
+        nome = leia.next();
+        System.out.println("Raça do gat(o)");
+        raca = leia.next();
+        System.out.println("Porte do gat(o)");
+        porte = leia.next();
+        System.out.println("Cor do pelo do gat(o)");
+        cor_do_pelo = leia.next();
+        System.out.println("Ano de nascimento do gat(o)");
+        anoNasc = leia.nextInt();
+
+        if (nome.isEmpty() || raca.isEmpty() || porte.isEmpty() || cor_do_pelo.isEmpty() || anoNasc == 0) {
+            System.out.println("Erro ao cadastrar o gato, por favor verifique os dados inseridos e tente novamente.");
+        } else {
+            gatos.add(new Gato(raca, anoNasc, porte, cor_do_pelo, adotado, nome));
+            System.out.println("Gato cadastrado com sucesso");
+        }
+
+    }
+    // sessão do cachorro
 
     private void menuDog() {
         System.out.println("|1| Listar todos os cachorros disponiveis para adoção");
