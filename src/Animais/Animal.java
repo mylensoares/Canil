@@ -7,13 +7,19 @@ abstract public class Animal {
     private String raca;
     private int anoNasc;
     private String porte;
+    private int codigo;
 
-    public Animal(String raca, int anoNasc, String porte, Boolean adotado, String nome) {
+    public Animal(String raca, int anoNasc, String porte, Boolean adotado, String nome, int codigo) {
         this.raca = raca;
         this.anoNasc = anoNasc;
         this.adotado = adotado;
         this.porte = porte;
         this.nome = nome;
+        this.codigo = codigo;
+    }
+
+    public int getCodigo() {
+        return codigo;
     }
 
     public void setNome(String nome) {
