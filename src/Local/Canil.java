@@ -28,7 +28,7 @@ public class Canil {
     }
 
     private void menuBasic() {
-        
+
         while (escolha != 3) {
             System.out.println("\nEscolha uma das opções abaixo");
             System.out.println("|1| Sessão de gatos");
@@ -53,16 +53,17 @@ public class Canil {
     private void menuCat() {
         System.out.println("|1| Listar todos os gatos disponiveis para adoção");
         System.out.println("|2| Listar todos os gatos adotados");
-        System.out.println("|3| Adicionar um novo gato ao Canil OO");
+        System.out.println("|3| Cadastrar um novo gato no Canil OO");
         escolha = leia.nextInt();
-       
+
         switch (escolha) {
             case 1:
-                
-                listarGatos(filtrarGato(false,gatos));
+                System.out.println("\nGatos disponiveis para adoção: ");
+                listarGatos(filtrarGato(false, gatos));
                 break;
             case 2:
-                
+                System.out.println("\nGatos que já possuem um lar: ");
+
                 listarGatos(filtrarGato(true, gatos));
 
                 break;
@@ -74,52 +75,55 @@ public class Canil {
 
     }
 
-    private ArrayList<Gato>filtrarGato(boolean adotado, ArrayList<Gato> gatos ){
-        final  ArrayList<Gato> gatosFiltrado =  new ArrayList<>();
-        if(adotado){
+    private ArrayList<Gato> filtrarGato(boolean adotado, ArrayList<Gato> gatos) {
+        final ArrayList<Gato> gatosFiltrado = new ArrayList<>();
+        if (adotado) {
             for (Gato gato : gatos) {
-                if(gato.getAdotado()){
+                if (gato.getAdotado()) {
                     gatosFiltrado.add(gato);
                 }
-                
+
             }
 
-        }
-        else{
+        } else {
             for (Gato gato : gatos) {
-                if(!gato.getAdotado()){
+                if (!gato.getAdotado()) {
                     gatosFiltrado.add(gato);
                 }
-                
+
             }
         }
         return gatosFiltrado;
-       
+
     }
-    private void listarGatos(ArrayList<Gato> gatos ){
-        System.out.println("Gatos disponiveis: \n");
+
+    private void listarGatos(ArrayList<Gato> gatos) {
         int cont = 1;
-        if (!gatos.isEmpty()){
+        if (!gatos.isEmpty()) {
             for (Gato gato : gatos) {
-                    System.out.println("[" + cont + "] " + gato.getNome());
-                    cont++;
-                }
+                System.out.println("[" + cont + "] " + gato.getNome());
+                cont++;
             }
-            else{
-                System.out.println("Nenhum gato disponível no momento");
-            }
+        } else {
+            System.out.println("Nenhum registro foi encontrado");
+        }
     }
 
     private void menuDog() {
         System.out.println("|1| Listar todos os cachorros disponiveis para adoção");
         System.out.println("|2| Listar todos os cachorros adotados");
-        System.out.println("|3| Adicionar um novo cachorro ao Canil OO");
+        System.out.println("|3| Cadastar um novo cachorro no Canil OO");
         escolha = leia.nextInt();
         switch (escolha) {
             case 1:
-            
+                System.out.println("\nCachorros disponiveis para adoção: ");
+
+                listarCachorro(filtrarCachorro(false, cachorros));
                 break;
             case 2:
+                System.out.println("\nCachorros que já possuem um lar: ");
+
+                listarCachorro(filtrarCachorro(true, cachorros));
 
                 break;
             case 3:
@@ -129,40 +133,37 @@ public class Canil {
         }
 
     }
-    private ArrayList<Cachorro>filtrarCachorro(boolean adotado, ArrayList<Cachorro> cachorros ){
-        final  ArrayList<Cachorro> cachorrosFitrado =  new ArrayList<>();
-        if(adotado){
+
+    private ArrayList<Cachorro> filtrarCachorro(boolean adotado, ArrayList<Cachorro> cachorros) {
+        final ArrayList<Cachorro> cachorrosFitrado = new ArrayList<>();
+        if (adotado) {
             for (Cachorro cachorro : cachorros) {
-                if(cachorro.getAdotado()){
+                if (cachorro.getAdotado()) {
                     cachorrosFitrado.add(cachorro);
                 }
-                
+
             }
 
-        }
-        else{
+        } else {
             for (Cachorro cachorro : cachorros) {
-                if(!cachorro.getAdotado()){
+                if (!cachorro.getAdotado()) {
                     cachorrosFitrado.add(cachorro);
                 }
-                
+
             }
         }
         return cachorrosFitrado;
     }
 
-
- private void listarCachorro(ArrayList<Cachorro> cachorros ){
-        System.out.println("C: \n");
+    private void listarCachorro(ArrayList<Cachorro> cachorros) {
         int cont = 1;
-        if (!gatos.isEmpty()){
-            for (Gato gato : gatos) {
-                    System.out.println("[" + cont + "] " + gato.getNome());
-                    cont++;
-                }
+        if (!cachorros.isEmpty()) {
+            for (Cachorro cachorro : cachorros) {
+                System.out.println("[" + cont + "] " + cachorro.getNome());
+                cont++;
             }
-            else{
-                System.out.println("Nenhum gato disponível no momento");
-            }
+        } else {
+            System.out.println("Nenhum registro foi encontrado");
+        }
     }
 }
