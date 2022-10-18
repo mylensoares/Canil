@@ -3,14 +3,18 @@ package Local;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Animais.Animal;
 import Animais.Cachorro;
 import Animais.Gato;
+import Pessoas.Adotante;
+import Processos.Adocao;
 
 public class Canil {
     Scanner leia = new Scanner(System.in);
     int escolha = 0;
     private ArrayList<Gato> gatos = new ArrayList<>();
     private ArrayList<Cachorro> cachorros = new ArrayList<>();
+    private ArrayList<Adocao> Adocoes = new ArrayList<>();
 
     public void Iniciarlizar(ArrayList<Gato> gatos, ArrayList<Cachorro> cachorros) {
         this.gatos = gatos;
@@ -33,6 +37,7 @@ public class Canil {
             System.out.println("\nEscolha uma das opções abaixo");
             System.out.println("|1| Sessão de gatos");
             System.out.println("|2| Sessão de cachorros");
+            System.out.println("|3| Sessão de adoção");
             System.out.println("|9| Fechar programa");
             escolha = leia.nextInt();
             switch (escolha) {
@@ -41,6 +46,9 @@ public class Canil {
                     break;
                 case 2:
                     menuDog();
+                    break;
+                case 3:
+                    menuAdocao();
                     break;
                 case 9:
                     System.out.println("Até mais");
@@ -112,7 +120,7 @@ public class Canil {
 
     private void cadastrarGato() {
         String raca, porte, cor_do_pelo, nome;
-        int anoNasc = 0;
+        int anoNasc = 0, codigo = 0;
         boolean adotado = false;
 
         System.out.println("Cadastro: \n ");
@@ -127,15 +135,31 @@ public class Canil {
         cor_do_pelo = leia.next();
         System.out.println("Ano de nascimento do gat(o)");
         anoNasc = leia.nextInt();
+        System.out.println("Codigo do gat(o)");
+        codigo = leia.nextInt();
 
-        if (nome.isEmpty() || raca.isEmpty() || porte.isEmpty() || cor_do_pelo.isEmpty() || anoNasc == 0) {
+        if (nome.isEmpty() || raca.isEmpty() || porte.isEmpty() || cor_do_pelo.isEmpty() || anoNasc == 0
+                || codigo == 0) {
             System.out.println("Erro ao cadastrar o gato, por favor verifique os dados inseridos e tente novamente.");
         } else {
-            gatos.add(new Gato(raca, anoNasc, porte, cor_do_pelo, adotado, nome));
+            gatos.add(new Gato(raca, anoNasc, porte, cor_do_pelo, adotado, nome, codigo));
             System.out.println("Gato cadastrado com sucesso");
         }
 
     }
+
+    // private Gato pesquisarGato(int codigo) {
+    // for (Gato gato : gatos) {
+    // if (gato.getCodigo() == codigo) {
+    // return gato;
+    // } else {
+    // System.out.println("Nenhum gato com o codigo digitado, tente novamente");
+
+    // }
+    // return;
+    // }
+    // }
+
     // sessão do cachorro
 
     private void menuDog() {
@@ -195,4 +219,90 @@ public class Canil {
             System.out.println("Nenhum registro foi encontrado");
         }
     }
+
+    private void menuAdocao() {
+        System.out.println("|1| Historico de adoções");
+        System.out.println("|2| Adotar um companheiro");
+        System.out.println("|3| Voltar");
+        escolha = leia.nextInt();
+
+        switch (escolha) {
+            case 1:
+                System.out.println("\nLista de adoções: ");
+                listarAdocoes();
+                break;
+            case 2:
+                System.out.println("\nAdoção: ");
+                adotar();
+                break;
+
+        }
+    }
+
+    private void listarAdocoes() {
+        int cont = 1;
+        if (!Adocoes.isEmpty()) {
+            for (Adocao adocao : Adocoes) {
+                System.out.println("[" + cont + "] " + adocao.getData());
+                cont++;
+            }
+        } else {
+            System.out.println("Nenhum registro foi encontrado");
+        }
+    }
+
+    private void adotar() {
+        int codigo = 0;
+        System.out.println("Preencha os dados a seguir do adotante, para iniciar a adoção");
+        if (cadastroAdotante() != null) {
+            System.out.println("Como seu companheiro, o que deseja ?");
+            System.out.println("|1| Gato");
+            System.out.println("|2| Cachorro");
+            escolha = leia.nextInt();
+            switch (escolha) {
+                case 1:
+                    System.out.println("Digite o codigo do Gato desejado: ");
+                    codigo = leia.nextInt();
+                    // pesquisarGato()
+
+                    break;
+                case 2:
+                    System.out.println("Digite o codigo do Cachorro desejado: ");
+                    codigo = leia.nextInt();
+                    break;
+            }
+
+        } else {
+
+            return;
+        }
+
+    }
+
+    private Adotante cadastroAdotante() {
+
+        String cpf, endereco, nome;
+
+        System.out.println("Cadastro: \n ");
+
+        System.out.println("Nome do cliente");
+        nome = leia.next();
+        System.out.println("CPF do cliente");
+        cpf = leia.next();
+        System.out.println("endereco do cliente");
+        endereco = leia.next();
+
+        if (nome.isEmpty() || cpf.isEmpty() || endereco.isEmpty()) {
+            System.out
+                    .println("Erro ao cadastrar o cliente, por favor verifique os dados inseridos e tente novamente.");
+            return null;
+        } else {
+            System.out.println("Cliente cadastrado com sucesso");
+            // podemos criar uma lista de clientes
+            return new Adotante(nome, cpf, endereco);
+
+        }
+
+    }
+
 }
