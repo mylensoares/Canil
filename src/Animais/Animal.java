@@ -8,14 +8,24 @@ abstract public class Animal {
     private int anoNasc;
     private String porte;
     private int codigo;
+    private String tipo;
 
-    public Animal(String raca, int anoNasc, String porte, Boolean adotado, String nome, int codigo) {
+    public Animal(String raca, int anoNasc, String porte, Boolean adotado, String nome, int codigo, String tipo) {
         this.raca = raca;
         this.anoNasc = anoNasc;
         this.adotado = adotado;
         this.porte = porte;
         this.nome = nome;
         this.codigo = codigo;
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public int getCodigo() {

@@ -6,7 +6,7 @@ public class Gato extends Animal {
     private String cor_do_pelo;
 
     public Gato(String raca, int anoNasc, String porte, String cor_do_pelo, boolean adotado, String nome, int codigo) {
-        super(raca, anoNasc, porte, adotado, nome, codigo);
+        super(raca, anoNasc, porte, adotado, nome, codigo, "Gato");
         this.cor_do_pelo = cor_do_pelo;
     }
 

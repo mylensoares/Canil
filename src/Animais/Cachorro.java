@@ -7,7 +7,7 @@ public class Cachorro extends Animal {
 
   public Cachorro(String raca, int anoNasc, String porte, String cor_do_pelo, boolean adotado, String name,
       int codigo) {
-    super(raca, anoNasc, porte, adotado, name, codigo);
+    super(raca, anoNasc, porte, adotado, name, codigo, "Cachorro");
     this.cor_do_pelo = cor_do_pelo;
   }
 
