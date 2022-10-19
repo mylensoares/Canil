@@ -1,5 +1,6 @@
 package Local;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,7 +32,7 @@ public class Canil {
     }
 
     private void menuBasic() {
-
+        escolha = 0;
         while (escolha != 9) {
             System.out.println("\nEscolha uma das opções abaixo");
             System.out.println("|1| Sessão de gatos");
@@ -60,6 +61,7 @@ public class Canil {
 
     // sessão do gato
     private void menuCat() {
+        escolha = 0;
         while (escolha != 4) {
             System.out.println("");
             System.out.println("|1| Listar todos os gatos disponiveis para adoção");
@@ -155,7 +157,7 @@ public class Canil {
     }
 
     private Gato pesquisarGato() {
-        System.out.println("Digite o codigo do Gato desejado: ");
+        System.out.print("Digite o codigo do Gato desejado: ");
         while (true) {
             System.out.print("Código do gato: ");
             int codigo = leia.nextInt();
@@ -174,6 +176,7 @@ public class Canil {
     // sessão do cachorro
 
     private void menuDog() {
+        escolha = 0;
         while (escolha != 4) {
             System.out.println("");
             System.out.println("|1| Listar todos os cachorros disponiveis para adoção");
@@ -198,7 +201,7 @@ public class Canil {
 
                     break;
                 case 4:
-                    // menuBasic();
+
                     break;
                 default:
                     System.out.println("Opção Inválida");
@@ -273,52 +276,57 @@ public class Canil {
     }
 
     private Cachorro pesquisarCachorro() {
-        System.out.println("Digite o codigo do Cachorro desejado: ");
+        System.out.print("Digite o codigo do Cachorro desejado: ");
         while (true) {
 
             int codigo = leia.nextInt();
             for (Cachorro cachorro : cachorros) {
                 if (cachorro.getCodigo() == codigo && !cachorro.getAdotado()) {
-                    cachorro.setAdotado(true);
+
                     return cachorro;
                 }
-                // return;
+
             }
             System.out.println("nenhum dado encontrado");
         }
     }
 
     private void menuAdocao() {
-        System.out.println("|1| Historico de adoções");
-        System.out.println("|2| Adotar um companheiro");
-        System.out.println("|3| Retornar");
-        System.out.print("Sua opção: ");
-        escolha = leia.nextInt();
+        escolha = 0;
+        while (escolha != 3) {
+            System.out.println("");
+            System.out.println("|1| Historico de adoções");
+            System.out.println("|2| Adotar um companheiro");
+            System.out.println("|3| Retornar");
+            System.out.print("Sua opção: ");
+            escolha = leia.nextInt();
 
-        switch (escolha) {
-            case 1:
-                System.out.println("\nLista de adoções: ");
-                listarAdocoes();
-                break;
-            case 2:
-                System.out.println("\nAdoção: ");
-                adotar();
-                break;
-            case 3:
-                menuBasic();
-            default:
-                System.out.println("Opção Inválida");
-                menuAdocao();
+            switch (escolha) {
+                case 1:
+                    System.out.println("\nLista de adoções: \n");
+                    listarAdocoes();
+                    break;
+                case 2:
+                    System.out.println("\nAdoção: ");
+                    adotar();
+                    break;
+                case 3:
+                    break;
+                default:
+                    System.out.println("Opção Inválida");
 
+            }
         }
     }
 
     private void listarAdocoes() {
-        int cont = 1;
+
         if (!Adocoes.isEmpty()) {
             for (Adocao adocao : Adocoes) {
-                System.out.println("[" + cont + "] " + adocao.getData());
-                cont++;
+                System.out.println("|Data :" + adocao.getData() + " |Adotante : "
+                        + adocao.getAdotante().getNome() + " |Tipo do animal: " + adocao.getAnimal().getTipo()
+                        + " |Nome do animal: " + adocao.getAnimal().getNome());
+
             }
         } else {
             System.out.println("Nenhum registro foi encontrado");
@@ -326,35 +334,44 @@ public class Canil {
     }
 
     private void adotar() {
+        escolha = 0;
+        while (escolha != 3) {
+            Adotante adotante = cadastroAdotante();
+            String data = String.valueOf(LocalDate.now().getDayOfMonth()) + "/"
+                    + String.valueOf(LocalDate.now().getMonthValue() + "/" + String.valueOf(LocalDate.now().getYear()));
+            System.out.println("Preencha os dados a seguir do adotante, para finalizar a adoção");
+            if (adotante != null) {
+                System.out.println("");
+                System.out.println("Como seu companheiro, o que deseja ?");
+                System.out.println("|1| Gato");
+                System.out.println("|2| Cachorro");
+                System.out.println("|3| Retornar");
+                System.out.print("Sua opção: ");
+                escolha = leia.nextInt();
+                switch (escolha) {
+                    case 1:
+                        Gato gatoAdotado = pesquisarGato();
 
-        System.out.println("Preencha os dados a seguir do adotante, para iniciar a adoção");
-        if (cadastroAdotante() != null) {
-            System.out.println("Como seu companheiro, o que deseja ?");
-            System.out.println("|1| Gato");
-            System.out.println("|2| Cachorro");
-            System.out.println("|3| Retornar");
-            System.out.print("Sua opção: ");
-            escolha = leia.nextInt();
-            switch (escolha) {
-                case 1:
+                        Adocoes.add(new Adocao(gatoAdotado, adotante, data));
 
-                    pesquisarGato();
-                    System.out.println("Adoção bem sucedida");
-                    break;
-                case 2:
-                    pesquisarCachorro();
+                        return;
+                    case 2:
+                        Cachorro cachorroAdotado = pesquisarCachorro();
+                        Adocoes.add(new Adocao(cachorroAdotado, adotante, data));
+                        System.out.println("Adoção bem sucedida");
 
-                    break;
-                case 3:
-                    menuAdocao();
-                default:
-                    System.out.println("Opção Inválida");
-                    adotar();
+                        return;
+                    case 3:
+                        menuAdocao();
+                    default:
+                        System.out.println("Opção Inválida");
+
+                }
+
+            } else {
+
+                return;
             }
-
-        } else {
-
-            return;
         }
 
     }
@@ -362,8 +379,6 @@ public class Canil {
     private Adotante cadastroAdotante() {
 
         String cpf, endereco, nome;
-
-        System.out.println("Cadastro: \n ");
 
         System.out.print("Nome do cliente: ");
         nome = leia.next();
