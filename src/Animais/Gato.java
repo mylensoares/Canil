@@ -21,6 +21,6 @@ public class Gato extends Animal {
     @Override
     public int idade() {
         int ano_at = LocalDate.now().getYear();
-        return (ano_at - getAnoNasc()) * 2;
+        return (getAnoNasc() - ano_at) * 2;
     }
 }
