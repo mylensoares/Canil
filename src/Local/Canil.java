@@ -123,7 +123,7 @@ public class Canil {
             }
 
         } else {
-            System.out.println("Nenhum registro foi encontrado");
+            System.out.println("\nNenhum registro foi encontrado");
         }
     }
 
@@ -242,7 +242,7 @@ public class Canil {
             }
 
         } else {
-            System.out.println("Nenhum registro foi encontrado");
+            System.out.println("\nNenhum registro foi encontrado");
         }
     }
 
@@ -289,7 +289,7 @@ public class Canil {
                 }
 
             }
-            System.out.println("nenhum dado encontrado");
+            System.out.println("\nNenhum registro foi encontrado");
         }
     }
 
@@ -305,7 +305,7 @@ public class Canil {
 
             switch (escolha) {
                 case 1:
-                    System.out.println("\nLista de adoções: \n");
+                    System.out.println("\nLista de adoções:");
                     listarAdocoes();
                     break;
                 case 2:
@@ -331,7 +331,7 @@ public class Canil {
 
             }
         } else {
-            System.out.println("Nenhum registro foi encontrado");
+            System.out.println("\nNenhum registro foi encontrado");
         }
     }
 
