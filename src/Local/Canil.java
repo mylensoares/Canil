@@ -135,16 +135,17 @@ public class Canil {
         System.out.println("Cadastro: \n ");
 
         System.out.print("Nome do gat(o): ");
-        nome = leia.next();
+        nome = cadastros().nextLine();
         System.out.print("Raça do gat(o): ");
-        raca = leia.next();
+        raca = cadastros().nextLine();
         System.out.print("Porte do gat(o): ");
-        porte = leia.next();
+        porte = cadastros().nextLine();
         System.out.print("Cor do pelo do gat(o): ");
-        cor_do_pelo = leia.next();
+        cor_do_pelo = cadastros().nextLine();
         System.out.print("Ano de nascimento do gat(o): ");
-        anoNasc = leia.nextInt();
+        anoNasc = cadastros().nextInt();
         System.out.print("Codigo do gat(o): ");
+        codigo = cadastros().nextInt();
 
         if (nome.isEmpty() || raca.isEmpty() || porte.isEmpty() || cor_do_pelo.isEmpty() || anoNasc == 0
                 || codigo == 0) {
@@ -157,9 +158,9 @@ public class Canil {
     }
 
     private Gato pesquisarGato() {
-        System.out.print("Digite o codigo do Gato desejado: ");
+
         while (true) {
-            System.out.print("Código do gato: ");
+            System.out.print("Digite o codigo do Gato desejado: ");
             int codigo = leia.nextInt();
             for (Gato gato : gatos) {
                 if (gato.getCodigo() == codigo && !gato.getAdotado()) {
@@ -253,16 +254,17 @@ public class Canil {
         System.out.println("Cadastro: \n ");
 
         System.out.print("Nome do cachorro:");
-        nome = leia.next();
+        nome = cadastros().nextLine();
         System.out.print("Raça do cachorro: ");
-        raca = leia.next();
+        raca = cadastros().nextLine();
         System.out.print("Porte do cachorro: ");
-        porte = leia.next();
+        porte = cadastros().nextLine();
         System.out.print("Cor do pelo do cachorro: ");
-        cor_do_pelo = leia.next();
+        cor_do_pelo = cadastros().nextLine();
         System.out.print("Ano de nascimento do cachorro: ");
-        anoNasc = leia.nextInt();
+        anoNasc = cadastros().nextInt();
         System.out.print("Codigo do cachorro: ");
+        codigo = cadastros().nextInt();
 
         if (nome.isEmpty() || raca.isEmpty() || porte.isEmpty() || cor_do_pelo.isEmpty() || anoNasc == 0
                 || codigo == 0) {
@@ -282,7 +284,7 @@ public class Canil {
             int codigo = leia.nextInt();
             for (Cachorro cachorro : cachorros) {
                 if (cachorro.getCodigo() == codigo && !cachorro.getAdotado()) {
-
+                    cachorro.setAdotado(true);
                     return cachorro;
                 }
 
@@ -376,16 +378,22 @@ public class Canil {
 
     }
 
+    private Scanner cadastros() {
+        return new Scanner(System.in);
+    }
+
     private Adotante cadastroAdotante() {
 
-        String cpf, endereco, nome;
+        String endereco, nome, cpf;
 
         System.out.print("Nome do cliente: ");
-        nome = leia.next();
+        nome = cadastros().nextLine();
+
         System.out.print("CPF do cliente: ");
-        cpf = leia.next();
+        cpf = cadastros().nextLine();
+
         System.out.print("endereco do cliente: ");
-        endereco = leia.next();
+        endereco = cadastros().nextLine();
 
         if (nome.isEmpty() || cpf.isEmpty() || endereco.isEmpty()) {
             System.out
@@ -393,11 +401,9 @@ public class Canil {
             return null;
         } else {
             System.out.println("Cliente cadastrado com sucesso");
-            // podemos criar uma lista de clientes
             return new Adotante(nome, cpf, endereco);
 
         }
 
     }
-
 }
